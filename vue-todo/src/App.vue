@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <h1>beaux todos</h1>
-    <SearchTodo v-on:search="searchTodo" />
-    <AddTodo v-on:add-todo="addTodo" />
-    <Todos v-bind:todos="todos" v-on:del="deleteTodo" />
+    <SearchTodo v-on:search="searchTodo"/>
+    <AddTodo v-on:add-todo="addTodo"/>
+    <Todos v-bind:todos="todos" v-on:del="deleteTodo"/>
   </div>
 </template>
 
 <script>
 import Todos from "./components/Todos";
 import AddTodo from "./components/AddTodo";
-import SearchTodo from './components/SearchTodo';
-import axios from 'axios';
+import SearchTodo from "./components/SearchTodo";
+import axios from "axios";
 
 export default {
   name: "app",
@@ -21,6 +21,7 @@ export default {
     AddTodo,
     SearchTodo
   },
+
   data() {
     return {
       todos: []
@@ -35,8 +36,11 @@ export default {
     addTodo(todo) {
       const { title, completed } = todo;
 
-      axios.post('https://jsonplaceholder.typicode.com/todos', {
-        title, completed})
+      axios
+        .post("https://jsonplaceholder.typicode.com/todos", {
+          title,
+          completed
+        })
         .then(r => this.todos.push(r.data))
         .catch(err => console.log(err));
 
@@ -44,21 +48,21 @@ export default {
     },
 
     searchTodo(title) {
-      const reg = new RegExp(title, 'gi');
-      console.log(title);
-      this.todos = this.todos.filter(todo => (
-        todo.title.search(reg) != -1
-      ))
-    },
+      if (title != '') {
+        const reg = new RegExp(title, "gi");
+        this.todos = this.todos.filter(todo => todo.title.search(reg) != -1);
+      }
+    }
   },
 
   created() {
-      axios.get('https://jsonplaceholder.typicode.com/todos?_limit=15')
-        .then(r => {
-          this.todos = r.data;
-        })
-        .catch(err => console.log(err));
-    }
+    axios
+      .get("https://jsonplaceholder.typicode.com/todos?_limit=15")
+      .then(r => {
+        this.todos = r.data;
+      })
+      .catch(err => console.log(err));
+  }
 };
 </script>
 

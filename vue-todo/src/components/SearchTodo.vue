@@ -2,7 +2,7 @@
     <div>
         <form class="form-group" @submit="searchTodo">
             <input type="text" name="title" class="form-control"
-                placeholder="Введите запрос">
+                placeholder="Введите запрос" v-model="title">
             <button class="btn btn-secondary" 
                 type="text" value="Submit">Найти</button>
         </form>
