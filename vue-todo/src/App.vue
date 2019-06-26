@@ -1,14 +1,16 @@
 <template>
   <div id="app">
     <h1>beaux todos</h1>
-    <AddTodo v-on:add-todo="addTodo"/>
-    <Todos v-bind:todos="todos" v-on:del="deleteTodo"/>
+    <SearchTodo v-on:search="searchTodo" />
+    <AddTodo v-on:add-todo="addTodo" />
+    <Todos v-bind:todos="todos" v-on:del="deleteTodo" />
   </div>
 </template>
 
 <script>
 import Todos from "./components/Todos";
 import AddTodo from "./components/AddTodo";
+import SearchTodo from './components/SearchTodo';
 import axios from 'axios';
 
 export default {
@@ -16,11 +18,37 @@ export default {
 
   components: {
     Todos,
-    AddTodo
+    AddTodo,
+    SearchTodo
   },
   data() {
     return {
-      todos: []
+      todos: [
+        {
+    "userId": 1,
+    "id": 1,
+    "title": "delectus aut autem",
+    "completed": false
+  },
+  {
+    "userId": 1,
+    "id": 2,
+    "title": "quis ut nam facilis et officia qui",
+    "completed": false
+  },
+  {
+    "userId": 1,
+    "id": 3,
+    "title": "fugiat veniam minus",
+    "completed": false
+  },
+  {
+    "userId": 1,
+    "id": 4,
+    "title": "et porro tempora",
+    "completed": false
+  }
+      ]
     };
   },
 
@@ -38,6 +66,14 @@ export default {
         .catch(err => console.log(err));
 
       this.todos.push(todo);
+    },
+
+    searchTodo(title) {
+      const reg = new RegExp(title, 'gi');
+      console.log(title);
+      this.todos = this.todos.filter(todo => (
+        todo.title.search(reg) != -1
+      ))
     },
 
     created() {
