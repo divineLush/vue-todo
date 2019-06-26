@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1>beaux todos</h1>
         <div v-bind:key="todo.id" v-for="todo in todos">
             <TodoItem v-bind:todoItem="todo"
                 v-on:del="$emit('del', todo.id)"/>
@@ -19,9 +18,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-    h1 {
-        text-align: center;
-    }
-</style>

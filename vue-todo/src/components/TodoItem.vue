@@ -1,9 +1,10 @@
 <template>
-    <div class="todoItem form-check" 
-        v-bind:class="{'is-complete': todoItem.completed}">
-        <input class="form-check-input" 
-            type="checkbox" v-on:change="markComplete">
-        <p>{{ todoItem.title }}</p>
+    <div class="todoItem form-check">
+        <div v-bind:class="{'is-complete': todoItem.completed}">
+            <input class="form-check-input" 
+                type="checkbox" v-on:change="markComplete">
+            <p>{{ todoItem.title }}</p>
+        </div>
         <button class="btn btn-light"
             @click="$emit('del', todoItem.id)">Удалить</button>
     </div>
