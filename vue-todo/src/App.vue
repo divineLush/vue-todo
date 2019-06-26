@@ -23,32 +23,7 @@ export default {
   },
   data() {
     return {
-      todos: [
-        {
-    "userId": 1,
-    "id": 1,
-    "title": "delectus aut autem",
-    "completed": false
-  },
-  {
-    "userId": 1,
-    "id": 2,
-    "title": "quis ut nam facilis et officia qui",
-    "completed": false
-  },
-  {
-    "userId": 1,
-    "id": 3,
-    "title": "fugiat veniam minus",
-    "completed": false
-  },
-  {
-    "userId": 1,
-    "id": 4,
-    "title": "et porro tempora",
-    "completed": false
-  }
-      ]
+      todos: []
     };
   },
 
@@ -75,16 +50,15 @@ export default {
         todo.title.search(reg) != -1
       ))
     },
+  },
 
-    created() {
+  created() {
       axios.get('https://jsonplaceholder.typicode.com/todos?_limit=15')
         .then(r => {
           this.todos = r.data;
-          console.log(r.data[0]);
         })
         .catch(err => console.log(err));
     }
-  }
 };
 </script>
 
