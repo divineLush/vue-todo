@@ -2,6 +2,7 @@
     <el-row class="form-check" type="flex">
         <el-container v-bind:class="{'is-complete': todoItem.completed}">
             <el-checkbox class="form-check-input" 
+                v-model="todoItem.completed"
                 v-on:change="markComplete"></el-checkbox>
             <p>{{ todoItem.title }}</p>
         </el-container>
