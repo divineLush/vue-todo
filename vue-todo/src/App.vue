@@ -42,7 +42,6 @@ export default {
           completed
         })
         .then(r => this.todos.push(r.data))
-        .catch(err => console.log(err));
 
       this.todos.push(todo);
     },
