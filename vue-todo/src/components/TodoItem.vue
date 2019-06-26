@@ -1,13 +1,12 @@
 <template>
-    <div class="todoItem form-check">
-        <div v-bind:class="{'is-complete': todoItem.completed}">
-            <input class="form-check-input" 
-                type="checkbox" v-on:change="markComplete">
+    <el-row class="form-check" type="flex">
+        <el-container v-bind:class="{'is-complete': todoItem.completed}">
+            <el-checkbox class="form-check-input" 
+                v-on:change="markComplete"></el-checkbox>
             <p>{{ todoItem.title }}</p>
-        </div>
-        <button class="btn btn-light"
-            @click="$emit('del', todoItem.id)">Удалить</button>
-    </div>
+        </el-container>
+        <el-button @click="$emit('del', todoItem.id)">Удалить</el-button>
+    </el-row>
 </template>
 
 <script>
@@ -28,10 +27,5 @@ export default {
 <style scoped>
     .is-complete {
         text-decoration: line-through;
-    }
-
-    .todoItem {
-        display: flex;
-        justify-content: space-between;
     }
 </style>

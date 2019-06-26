@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <h1>beaux todos</h1>
+    <el-header>
+      <h1>beaux todos</h1>
+    </el-header>
     <SearchTodo v-on:search="searchTodo"/>
     <AddTodo v-on:add-todo="addTodo"/>
     <Todos v-bind:todos="todos" v-on:del="deleteTodo"/>
@@ -60,7 +62,6 @@ export default {
       .then(r => {
         this.todos = r.data;
       })
-      .catch(err => console.log(err));
   }
 };
 </script>
